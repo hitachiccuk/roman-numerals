@@ -21,7 +21,7 @@ namespace RomanNumerals.UnitTests
         [InlineData(12, "XII")]
         [InlineData(13, "XIII")]
         [InlineData(14, "XIV")]
-        //[InlineData(15, "XV")]
+        [InlineData(15, "XV")]
         public void ConvertReturnsExpected(int number, string numeral)
         {
             AssertEqual(number, numeral);

@@ -23,9 +23,16 @@ namespace RomanNumerals.Domain
             }
             else if (number > 4)
             {
-                numeral.Append(number >= 10 ? "X" : "V");
-
-                AppendI(numeral, remainder);
+                if (number >= 10)
+                {
+                    numeral.Append("X");
+                    numeral.Append(ConvertToNumeral(number - 10));
+                }
+                else
+                {
+                    numeral.Append("V");
+                    AppendI(numeral, remainder);
+                }
             }
             else
             {
