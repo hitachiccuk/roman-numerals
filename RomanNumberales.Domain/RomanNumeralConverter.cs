@@ -14,7 +14,7 @@ namespace RomanNumerals.Domain
 
             if (remainder == 4)
             {
-                if (number > 10)
+                if (number == 14)
                 {
                     numeral.Append("X");
                 }
@@ -26,7 +26,8 @@ namespace RomanNumerals.Domain
                 if (number >= 10)
                 {
                     numeral.Append("X");
-                    numeral.Append(ConvertToNumeral(number - 10));
+                    var restOfNumeral = ConvertToNumeral(number - 10);
+                    numeral.Append(restOfNumeral);
                 }
                 else
                 {
