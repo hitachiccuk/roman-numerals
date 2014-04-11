@@ -12,15 +12,19 @@ namespace RomanNumerals.Domain
             double div = Convert.ToDouble(number) / 5;
             int rem = number % 5;
 
-            if (div - Math.Floor(div) == 0.8)
+            if (DoesntFollowPattern(number))
             {
+                if (number > 10)
+                {
+                    numeral.Append("X");
+                }
                 AppendI(numeral, 1);
-                if (Math.Floor(div) % 2 == 0)
+                if (IsEven(div))
                     numeral.Append("V");
                 else
                     numeral.Append("X");
             }
-            else if (div >= 0.7)
+            else if (IsVOrX(number))
             {
                 if (number >= 10)
                     numeral.Append("X");
@@ -43,6 +47,23 @@ namespace RomanNumerals.Domain
             {
                 numeral.Append("I");
             }
+        }
+
+        private bool DoesntFollowPattern(int number)
+        {
+            double div = Convert.ToDouble(number) / 5;
+
+            return Math.Round(div - Math.Floor(div), 1) == 0.8;
+        }
+
+        private bool IsVOrX(int number)
+        {
+            return Convert.ToDouble(number) / 5 >= 0.7;
+        }
+
+        private bool IsEven(double number)
+        {
+            return Math.Floor(number) % 2 == 0;
         }
     }
 }
