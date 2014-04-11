@@ -10,28 +10,22 @@ namespace RomanNumerals.Domain
             StringBuilder numeral = new StringBuilder();
 
             double div = Convert.ToDouble(number) / 5;
-            int rem = number % 5;
+            int remainder = number % 5;
 
-            if (DoesntFollowPattern(number))
+            if (remainder == 4)
             {
                 if (number > 10)
                 {
                     numeral.Append("X");
                 }
                 AppendI(numeral, 1);
-                if (IsEven(div))
-                    numeral.Append("V");
-                else
-                    numeral.Append("X");
+                numeral.Append(IsEven(div) ? "V" : "X");
             }
-            else if (IsVOrX(number))
+            else if (number > 4)
             {
-                if (number >= 10)
-                    numeral.Append("X");
-                else
-                    numeral.Append("V");
+                numeral.Append(number >= 10 ? "X" : "V");
 
-                AppendI(numeral, rem);
+                AppendI(numeral, remainder);
             }
             else
             {
@@ -47,18 +41,6 @@ namespace RomanNumerals.Domain
             {
                 numeral.Append("I");
             }
-        }
-
-        private bool DoesntFollowPattern(int number)
-        {
-            double div = Convert.ToDouble(number) / 5;
-
-            return Math.Round(div - Math.Floor(div), 1) == 0.8;
-        }
-
-        private bool IsVOrX(int number)
-        {
-            return Convert.ToDouble(number) / 5 >= 0.7;
         }
 
         private bool IsEven(double number)
